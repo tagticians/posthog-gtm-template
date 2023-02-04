@@ -2,4 +2,5 @@ homepage: "https://www.posthog.com"
 documentation: "https://posthog.com/docs"
 versions:
   # Latest Version
-  - sha: 
+  - sha: 75fdad0353090842cbcc45d1162e199f97b0ba85
+  changeNotes: Initial Release

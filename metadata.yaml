@@ -1,0 +1,5 @@
+homepage: "https://www.posthog.com"
+documentation: "https://posthog.com/docs"
+versions:
+  # Latest Version
+  - sha: 

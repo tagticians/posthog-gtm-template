@@ -7,7 +7,7 @@ This template will help you setup custom events for Posthog, allowing you to map
 
 ## Template supports the following featuers:
 1. **posthog.capture events**, including:
-   - custom event tracking (using dataLayer `event` parameter as event name), and the adding of event parameters, and $set and $set_once user parameters.
+   - custom event tracking (using dataLayer `event` parameter as event name or any custom value), and the adding of event parameters, and $set and $set_once user parameters.
    - reset function to reset ids on a logout event
    - virtual pageviews for single page application
 1. **posthog.identify events**, including:
@@ -22,7 +22,7 @@ This template will help you setup custom events for Posthog, allowing you to map
 2. Implement the Posthog Custom Events template for the Google Tag Manager Template Gallery (search for `posthog`).
 3. Create a new tag and select the Posthog Custom Events template.
 4. Select which type of event you wish to add:
-   - **Custom Event**: It will track the `event` value from the dataLayer, any custom parameters and both $set and $set_once user parameters defined in the tag.
+   - **Custom Event**: Choose the source for the even name value, add custom parameters and if applicable set both $set and/or $set_once user parameters defined in the tag.
    - **Identify**: Can only be used when a distinct user ID is available in the dataLayer. Can be expanded with user properties using both $set and $set_once methods.
    - **Reset**: Resets the user’s Posthog cookies and ids. Should be using in conjunction with a log out event.
    - **User Opt In / Out**: Start or stop tracking based on a user’s cookie consent.

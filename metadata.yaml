@@ -1,5 +1,5 @@
-homepage: "https://www.posthog.com"
-documentation: "https://posthog.com/docs"
+homepage: "https://tagticians.com"
+documentation: "https://github.com/tagticians/posthog-gtm-template"
 versions:
   - sha: 578877f05345088952285e01d7a8a71d8c9df81a
     changeNotes: Added new event types and functionality to add user properties with Custom Event type.

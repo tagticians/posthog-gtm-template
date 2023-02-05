@@ -1,9 +1,5 @@
 homepage: "https://www.posthog.com"
 documentation: "https://posthog.com/docs"
 versions:
-  # Latest Version
   - sha: 578877f05345088952285e01d7a8a71d8c9df81a
-  changeNotes: Added new event types and functionality to add user properties with Custom Event type.
-  # Older versions
-  - sha: 75fdad0353090842cbcc45d1162e199f97b0ba85
-  changeNotes: Initial Release
+    changeNotes: Added new event types and functionality to add user properties with Custom Event type.

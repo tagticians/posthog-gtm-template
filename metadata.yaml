@@ -1,5 +1,5 @@
 homepage: "https://tagticians.com"
 documentation: "https://github.com/tagticians/posthog-gtm-template"
 versions:
-  - sha: 578877f05345088952285e01d7a8a71d8c9df81a
-    changeNotes: Added new event types and functionality to add user properties with Custom Event type.
+  - sha: b9fcf79f7b72eb8fe7e80ed97ac119704b1b5a9e
+    changeNotes: Added ability to set custom event name instead of using dataLayer event variable.

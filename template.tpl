@@ -1,4 +1,4 @@
-﻿___TERMS_OF_SERVICE___
+___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -51,6 +51,14 @@ ___TEMPLATE_PARAMETERS___
       {
         "value": "reset",
         "displayValue": "Reset"
+      },
+      {
+        "value": "userOptOut",
+        "displayValue": "Opt User Out"
+      },
+      {
+        "value": "userOptIn",
+        "displayValue": "Opt User In"
       }
     ],
     "simpleValueType": true,
@@ -59,11 +67,52 @@ ___TEMPLATE_PARAMETERS___
   {
     "type": "LABEL",
     "name": "postHogEventLabel",
-    "displayName": "Enter Event Parameters for sending to PostHog",
+    "displayName": "Enter Event Parameters using \u003ca href\u003d\"https://posthog.com/docs/integrate/client/js#send-custom-events-with-posthogcapture\"\u003ePostHog\u0027s Custom Events\u003c/a\u003e.",
     "enablingConditions": [
       {
         "paramName": "posthogEventType",
         "paramValue": "customEvent",
+        "type": "EQUALS"
+      }
+    ]
+  },
+  {
+    "type": "LABEL",
+    "name": "postHogPageViewLabel",
+    "displayName": "Learn more about tracking \u003ca href\u003d\"https://posthog.com/docs/integrate/client/js#one-page-apps-and-page-views\"\u003evirtual pageviews\u003c/a\u003e.",
+    "enablingConditions": [
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "virtualPageView",
+        "type": "EQUALS"
+      }
+    ]
+  },
+  {
+    "type": "LABEL",
+    "name": "postHogResetLabel",
+    "displayName": "Learn more about using  \u003ca href\u003d\"https://posthog.com/docs/integrate/client/js#reset-after-logout\"\u003eReset\u003c/a\u003e.",
+    "enablingConditions": [
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "reset",
+        "type": "EQUALS"
+      }
+    ]
+  },
+  {
+    "type": "LABEL",
+    "name": "postHogOptOutLabel",
+    "displayName": "PostHog JS offers a function to opt users out or in based on your cookie settings definition (e.g. preferences set via a cookie banner). Learn more about using  \u003ca href\u003d\"https://posthog.com/docs/integrate/client/js#opt-users-out\"\u003eOpt-out\u003c/a\u003e.",
+    "enablingConditions": [
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "userOptOut",
+        "type": "EQUALS"
+      },
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "userOptIn",
         "type": "EQUALS"
       }
     ]
@@ -97,21 +146,9 @@ ___TEMPLATE_PARAMETERS___
     ]
   },
   {
-    "type": "LABEL",
-    "name": "postHogUserLabel",
-    "displayName": "Enter User Parameters for sending to PostHog",
-    "enablingConditions": [
-      {
-        "paramName": "posthogEventType",
-        "paramValue": "identify",
-        "type": "EQUALS"
-      }
-    ]
-  },
-  {
     "type": "TEXT",
     "name": "postHogUserID",
-    "displayName": "Enter User ID (optional)",
+    "displayName": "Enter User ID (required)",
     "simpleValueType": true,
     "enablingConditions": [
       {
@@ -120,8 +157,38 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ],
-    "help": "This field is optional. If no \u003cb\u003eUser ID\u003c/b\u003e is set, an Anonymous ID value will be set.",
-    "canBeEmptyString": true
+    "help": "Learn more about \u003ca href\u003d\"https://posthog.com/docs/integrate/identifying-users\"\u003eIdentifying Users in Posthog\u003c/a\u003e.",
+    "canBeEmptyString": true,
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY",
+        "enablingConditions": [
+          {
+            "paramName": "posthogEventType",
+            "paramValue": "identify",
+            "type": "EQUALS"
+          }
+        ],
+        "errorMessage": "A User ID value is required when using the Identify event type."
+      }
+    ]
+  },
+  {
+    "type": "LABEL",
+    "name": "postHogUserLabel",
+    "displayName": "Enter User Parameters using \u003ca href\u003d\"https://posthog.com/docs/integrate/user-properties#when-to-use-set-and-set_once\"\u003ePostHog\u0027s $set and $setOnce method\u003c/a\u003e.",
+    "enablingConditions": [
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "identify",
+        "type": "EQUALS"
+      },
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "customEvent",
+        "type": "EQUALS"
+      }
+    ]
   },
   {
     "type": "SIMPLE_TABLE",
@@ -144,36 +211,16 @@ ___TEMPLATE_PARAMETERS___
     "enablingConditions": [
       {
         "paramName": "posthogEventType",
-        "paramValue": "identify",
+        "paramValue": "customEvent",
         "type": "EQUALS"
-      }
-    ],
-    "newRowButtonText": "Add a User $set Parameter",
-    "help": "Learn more about \u003ca href\u003d\"https://posthog.com/docs/integrate/user-properties#when-to-use-set-and-set_once\"\u003ePostHog\u0027s $set method\u003c/a\u003e"
-  },
-  {
-    "type": "RADIO",
-    "name": "postHogUserParametersSetOnceCheck",
-    "displayName": "Would you also like to use the $setOnce method to add additional user parameters?",
-    "radioItems": [
-      {
-        "value": true,
-        "displayValue": "Yes"
       },
-      {
-        "value": false,
-        "displayValue": "No"
-      }
-    ],
-    "simpleValueType": true,
-    "enablingConditions": [
       {
         "paramName": "posthogEventType",
         "paramValue": "identify",
         "type": "EQUALS"
       }
     ],
-    "defaultValue": 0
+    "newRowButtonText": "Add a User $set Parameter"
   },
   {
     "type": "SIMPLE_TABLE",
@@ -195,31 +242,28 @@ ___TEMPLATE_PARAMETERS___
     ],
     "enablingConditions": [
       {
-        "paramName": "postHogUserParametersSetOnceCheck",
-        "paramValue": true,
+        "paramName": "posthogEventType",
+        "paramValue": "customEvent",
+        "type": "EQUALS"
+      },
+      {
+        "paramName": "posthogEventType",
+        "paramValue": "identify",
         "type": "EQUALS"
       }
     ],
-    "newRowButtonText": "Add a User $setOnce Parameter",
-    "help": "Learn more about \u003ca href\u003d\"https://posthog.com/docs/integrate/user-properties#when-to-use-set-and-set_once\"\u003ePostHog\u0027s $set method\u003c/a\u003e"
+    "newRowButtonText": "Add a User $setOnce Parameter"
   }
 ]
 
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
-// Logging For Testing Purposes
-const log = require('logToConsole');
-
 // Production Code
 const createQueue = require('createQueue');
 const copyFromDataLayer = require('copyFromDataLayer');
-const copyFromWindow = require('copyFromWindow');
 const queryPermission = require('queryPermission');
 const callInWindow = require('callInWindow');
-
-// Copy Global Variables
-const dataLayer = copyFromWindow('dataLayer');
 
 // Copy Specific DataLayer Variable for Capture
 if (queryPermission('read_data_layer', 'event')) {
@@ -231,40 +275,52 @@ const eventType = data.posthogEventType;
 
 // Event Builder and Function Caller
 if(eventType === 'customEvent') {
+  // Define Event Name and Grab Event and User Properties
   var eventName = dataLayerEvent;
   var captureProperties = buildPropertiesObject(data.posthogEventParameters);
+
+  if(data.posthogUserParametersSet) {
+    var identifyPropertiesSet = buildPropertiesObject(data.posthogUserParametersSet);
+    captureProperties['$set'] = identifyPropertiesSet;
+  }
+  
+    if(data.posthogUserParametersSetOnce) {
+    var identifyPropertiesSetOnce = buildPropertiesObject(data.posthogUserParametersSetOnce);  
+    captureProperties['$set_once'] = identifyPropertiesSetOnce;
+  }
   callInWindow('posthog.capture', eventName, captureProperties);
 } else if(eventType === 'identify' && data.postHogUserID) {
+  // Grab User ID and User Properties
   var distinct_id = data.postHogUserID;
   var identifyPropertiesSet = buildPropertiesObject(data.posthogUserParametersSet);
   var identifyPropertiesSetOnce = buildPropertiesObject(data.posthogUserParametersSetOnce);
+  
   callInWindow('posthog.identify', distinct_id, identifyPropertiesSet, identifyPropertiesSetOnce);
 } else if(eventType === 'virtualPageView') {
+  // Trigger Virtual Page View event.
   callInWindow('posthog.capture', '$pageview');
 } else if(eventType === 'reset') {
+  // Reset User on Logout event
   callInWindow('posthog.reset');
+} else if(eventType === 'userOptOut') {
+  // Stop tracking user
+  callInWindow('posthog.opt_out_capturing');
+} else if(eventType === 'userOptIn') {
+  // Start tracking user
+  callInWindow('posthog.opt_in_capturing');
 }
 
-// Helper Function to match tag keys to dataLayer keys and set value
+
+// Helper Functions
 function buildPropertiesObject(propertiesArray) {
   var eventPropertiesObject = {};
   var eventProperties = propertiesArray;
 
   if(typeof eventProperties != 'undefined') {
-    // Grab last object in dataLayer array
-    const dataLayerObject = dataLayer[dataLayer.length -1];
-
     // Loop over key/value parameters added to tag
     for (let i = 0; i < eventProperties.length; i++) {
-        let eventPropertiesObjectKey = eventProperties[i].parameterKey;
-
-        // Check for match in dataLayer object
-        for(var dataLayerObjectKey in dataLayerObject) {
-          if(eventPropertiesObjectKey == dataLayerObjectKey) {
-            eventPropertiesObject[eventPropertiesObjectKey] = dataLayerObject[dataLayerObjectKey];
-          }
-        }
-      }  
+      eventPropertiesObject[eventProperties[i].parameterKey] = eventProperties[i].parameterValue;
+    }  
   } else {
     eventPropertiesObject = {};
   }
@@ -278,27 +334,6 @@ data.gtmOnSuccess();
 ___WEB_PERMISSIONS___
 
 [
-  {
-    "instance": {
-      "key": {
-        "publicId": "logging",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "environments",
-          "value": {
-            "type": 1,
-            "string": "debug"
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
-  },
   {
     "instance": {
       "key": {
@@ -505,6 +540,84 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "posthog.opt_out_capturing"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "posthog.opt_in_capturing"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
               }
             ]
           }
@@ -564,5 +677,3 @@ scenarios:
 ___NOTES___
 
 Created on 04/02/2023, 14:22:01
-
-

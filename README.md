@@ -18,7 +18,7 @@ This template will help you setup custom events for Posthog, allowing you to map
 2. **autoTracking** since the Posthog snippet needs to be implemented either hardcoded or through a Custom HTML tag. This option can be disable in the Posthog snippet.
 
 ## Instructions
-1. Implement the Posthog Javascript SDK in Google Tag Manager using a Custom HTML tag with an All Pages trigger (or any trigger that respects your users consent wishes).
+1. Implement the [Posthog Javascript SDK in Google Tag Manager using a Custom HTML tag](https://posthog.com/docs/integrate/third-party/google-tag-manager) with an All Pages trigger (or any trigger that respects your users consent wishes).
 2. Implement the Posthog Custom Events template for the Google Tag Manager Template Gallery (search for `posthog`).
 3. Create a new tag and select the Posthog Custom Events template.
 4. Select which type of event you wish to add:

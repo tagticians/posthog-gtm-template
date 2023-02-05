@@ -1,7 +1,7 @@
 # Posthog Custom Events template for Google Tag Manager
 This template will help you setup custom events for Posthog, allowing you to map event and user parameters for their respective events.
 
-> **⚠️** This template **will only work when Posthog’s snippet is implemented** either hardcoded or through a Custom HTML tag. This is a limitation of the Posthog Javascript SDK.
+> **⚠️** This template **will only work when Posthog’s snippet is implemented** either hardcoded or through a Custom HTML tag as described in [Posthog's Google Tag Manager documentation](https://posthog.com/docs/integrate/third-party/google-tag-manager). This is a limitation of the Posthog Javascript SDK.
 
 > ✅ The benefit of hardcoded or Custom HTML tag approach is that it **will allow you to fully configure your Posthog Javascript snippet**. Learn more about [available configuration options](https://posthog.com/docs/integrate/client/js#config).
 
